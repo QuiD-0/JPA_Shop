@@ -1,8 +1,8 @@
-package jpa.jpa_study.relation_mapping;
+package jpa.jpa_study.relation_mapping.order;
 
 import javax.persistence.*;
 
-@Entity
+//@Entity
 @Table(name = "ORDER_ITEM")
 public class OrderItem {
 
@@ -11,11 +11,11 @@ public class OrderItem {
     @Column(name = "ORDER_ITEM_ID")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ITEM_ID")
     private Item item;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 

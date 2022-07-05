@@ -1,15 +1,8 @@
 package jpa.jpa_study.relation_mapping;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Getter
-@Setter
 public class Member {
 
     @Id
@@ -19,13 +12,7 @@ public class Member {
 
     private String name;
 
-    private String city;
-
-    private String street;
-
-    private String zipcode;
-
-    @OneToMany(mappedBy = "member")
-    private List<Order> orders = new ArrayList<Order>();
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 }

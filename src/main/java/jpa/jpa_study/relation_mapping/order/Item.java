@@ -1,11 +1,10 @@
-package jpa.jpa_study.relation_mapping;
+package jpa.jpa_study.relation_mapping.order;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
+//@Entity
 public class Item {
 
     @Id

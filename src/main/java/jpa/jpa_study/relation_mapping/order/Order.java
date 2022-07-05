@@ -1,4 +1,4 @@
-package jpa.jpa_study.relation_mapping;
+package jpa.jpa_study.relation_mapping.order;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Entity
+//@Entity
 @Table(name = "ORDERS")
 public class Order {
 
@@ -16,7 +16,7 @@ public class Order {
     @Column(name = "ORDER_ID")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
