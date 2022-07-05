@@ -1,8 +1,16 @@
 package jpa.jpa_study.relation_mapping;
 
+import lombok.*;
+
 import javax.persistence.*;
 
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
+@ToString
 public class Member {
 
     @Id

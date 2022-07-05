@@ -1,10 +1,13 @@
 package jpa.jpa_study.relation_mapping;
 
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@ToString
 public class Team {
 
     @Id
