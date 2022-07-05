@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
+//@Entity
 @Getter
 @Setter
 @Builder

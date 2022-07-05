@@ -1,24 +1,16 @@
-package jpa.jpa_study.entity_mapping.order;
-
-import lombok.*;
+package jpa.jpa_study.relation_mapping;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-//@Entity
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "ITEM")
+@Entity
 public class Item {
 
     @Id
     @GeneratedValue
-    @Column(name = "item_id")
+    @Column(name = "ITEM_ID")
     private Long id;
 
     private String name;
@@ -26,4 +18,5 @@ public class Item {
     private int price;
 
     private int stockQuantity;
+
 }

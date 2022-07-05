@@ -2,9 +2,12 @@ package jpa.jpa_study.entity_mapping.order;
 
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity
+//@Entity
 @Getter
 @Setter
 @Builder
