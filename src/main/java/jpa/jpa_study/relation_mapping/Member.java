@@ -23,4 +23,13 @@ public class Member {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TEAM_ID")
     private Team team;
+
+    public void setTeam(Team team) {
+        if (this.team != null || team == null) {
+            this.team.getMemberList().remove(this);
+        } else {
+            team.getMemberList().add(this);
+        }
+        this.team = team;
+    }
 }
