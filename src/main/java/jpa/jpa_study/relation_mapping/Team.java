@@ -2,11 +2,14 @@ package jpa.jpa_study.relation_mapping;
 
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+//@Entity
 @Builder
 @Getter
 @Setter
