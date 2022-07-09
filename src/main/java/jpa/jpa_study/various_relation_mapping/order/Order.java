@@ -1,6 +1,5 @@
 package jpa.jpa_study.various_relation_mapping.order;
 
-
 import jpa.jpa_study.entity_mapping.order.OrderState;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 public class Order {
+
     @Id
     @GeneratedValue
     @Column(name = "ORDER_ID")
@@ -24,32 +24,32 @@ public class Order {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @OneToMany(mappedBy = "order")
-    private List<OrderItem> orderItems = new ArrayList<>();
-
     @OneToOne
     @JoinColumn(name = "DELIVERY_ID")
     private Delivery delivery;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     private Date orderDate;
 
     @Enumerated(EnumType.STRING)
     private OrderState orderState;
 
-    public void setMember(Member member){
-        if(this.member != null){
+    public void setMember(Member member) {
+        if (this.member != null) {
             this.member.getOrders().remove(this);
         }
         this.member = member;
         member.getOrders().add(this);
     }
 
-    public void addOrderItem(OrderItem orderItem){
+    public void addOrderItem(OrderItem orderItem) {
         orderItems.add(orderItem);
         orderItem.setOrder(this);
     }
 
-    public void setDelivery(Delivery delivery){
+    public void setDelivery(Delivery delivery) {
         this.delivery = delivery;
         delivery.setOrder(this);
     }
