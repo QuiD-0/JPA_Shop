@@ -3,6 +3,7 @@ package jpa.jpa_study.various_relation_mapping.order;
 import jpa.jpa_study.entity_mapping.order.OrderState;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 @Table(name = "ORDERS")
 @Getter
 @Setter
+@ToString
 public class Order {
 
     @Id
@@ -45,7 +47,7 @@ public class Order {
     }
 
     public void addOrderItem(OrderItem orderItem) {
-        orderItems.add(orderItem);
+        this.orderItems.add(orderItem);
         orderItem.setOrder(this);
     }
 

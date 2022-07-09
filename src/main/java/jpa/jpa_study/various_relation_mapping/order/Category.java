@@ -17,6 +17,8 @@ public class Category {
     @Column(name = "CATEGORY")
     private Long id;
 
+    private String name;
+
     @ManyToMany
     @JoinTable(name = "CATEGORY_ITEM", joinColumns = @JoinColumn(name = "CATEGORY_ID"), inverseJoinColumns = @JoinColumn(name = "ITEM_ID"))
     private List<Item> items = new ArrayList<>();
@@ -36,5 +38,6 @@ public class Category {
     public void addItem(Item item){
         this.items.add(item);
     }
+
 
 }

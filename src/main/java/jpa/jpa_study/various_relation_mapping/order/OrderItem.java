@@ -1,8 +1,13 @@
 package jpa.jpa_study.various_relation_mapping.order;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@Setter
+@Getter
 public class OrderItem {
     @Id
     @GeneratedValue
