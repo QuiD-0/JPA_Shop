@@ -1,0 +1,16 @@
+package jpa.jpa_study.advanced_mapping.test;
+
+import jpa.jpa_study.advanced_mapping.item.Album;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class InputTestService {
+
+    @Autowired
+    InputTestRepository inputTestRepository;
+
+    public Album ad_mapping_test(){
+        return inputTestRepository.createAlbum();
+    }
+}
