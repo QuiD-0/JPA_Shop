@@ -1,5 +1,6 @@
 package jpa.jpa_study.advanced_mapping.test;
 
+import jpa.jpa_study.advanced_mapping.embedded.Parent;
 import jpa.jpa_study.advanced_mapping.item.Album;
 import jpa.jpa_study.advanced_mapping.member.Seller;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,5 +18,9 @@ public class InputTestService {
 
     public Seller add_baseEntity() {
         return inputTestRepository.createSeller();
+    }
+
+    public Parent add_embedded() {
+        return inputTestRepository.createParent();
     }
 }
