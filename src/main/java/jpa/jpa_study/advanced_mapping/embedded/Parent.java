@@ -4,9 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
 
-@Entity
+//@Entity
 @Getter
 @Setter
 public class Parent {

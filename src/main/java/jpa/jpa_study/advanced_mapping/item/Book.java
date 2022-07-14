@@ -1,10 +1,9 @@
 package jpa.jpa_study.advanced_mapping.item;
 
 import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
-@Entity
+//@Entity
 @DiscriminatorValue("B")
 @PrimaryKeyJoinColumn(name = "BOOK_ID")
 
