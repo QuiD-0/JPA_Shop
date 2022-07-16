@@ -1,7 +1,6 @@
 package jpa.jpa_study.twitterAPI;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import io.github.redouane59.twitter.TwitterClient;
 import io.github.redouane59.twitter.dto.endpoints.AdditionalParameters;
 import io.github.redouane59.twitter.dto.tweet.TweetList;
@@ -18,23 +17,27 @@ import java.time.LocalDateTime;
 @Service
 public class APIService {
 
-    Reader reader = new FileReader("secret.json");
+    Reader reader;
+    {
+        try {
+            reader = new FileReader("Secret.json");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
     Gson gson = new Gson();
-    JsonObject obj = gson.fromJson(reader, JsonObject.class);
+    Key key = gson.fromJson(reader, Key.class);
 
     private TwitterClient twitterClient = new TwitterClient(TwitterCredentials.builder()
-            .accessToken("")
-            .accessTokenSecret("")
-            .apiKey("")
-            .apiSecretKey("")
+            .accessToken(key.accessToken)
+            .accessTokenSecret(key.accessTokenSecret)
+            .apiKey(key.apiKey)
+            .apiSecretKey(key.apiSecret)
             .build());
-
-    public APIService() throws FileNotFoundException {}
 
     public void TestTwitterLoading() {
         LocalDateTime endLocalDateTime = LocalDateTime.now();
         LocalDateTime startLocalDateTime = endLocalDateTime.minusDays(7);
-        // 파라메터 설정
         AdditionalParameters additionalParameters = AdditionalParameters.builder().startTime(startLocalDateTime).endTime(endLocalDateTime).build();
 
         UserV2 userV2 = twitterClient.getUserFromUserName("TicketOpen"); //@를 제외한 아이디
