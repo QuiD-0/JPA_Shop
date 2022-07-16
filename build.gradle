@@ -26,6 +26,8 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation "com.twitter:twitter-api-java-sdk:2.0.2"
+    implementation 'io.github.redouane59.twitter:twittered:2.2'
 }
 
 tasks.named('test') {
