@@ -16,8 +16,12 @@ public class Child {
 
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Parent parent;
 
+    @Override
+    public String toString() {
+        return "Child{" + "id=" + id + ", name='" + name + '\'' + parent.getName()+'}';
+    }
 }
