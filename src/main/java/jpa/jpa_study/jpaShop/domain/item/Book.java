@@ -1,4 +1,4 @@
-package jpa.jpa_study.jpaShop.item;
+package jpa.jpa_study.jpaShop.domain.item;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,7 +1,8 @@
-package jpa.jpa_study.jpaShop;
+package jpa.jpa_study.jpaShop.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,7 +12,6 @@ import java.util.List;
 @Entity
 @Table(name = "orders")
 @Getter
-@Setter
 public class Order {
     @Id
     @GeneratedValue
@@ -29,8 +29,10 @@ public class Order {
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
+    @CreationTimestamp
     private LocalDateTime orderDate;
 
+    @Setter
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 

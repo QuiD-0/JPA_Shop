@@ -1,4 +1,4 @@
-package jpa.jpa_study.jpaShop;
+package jpa.jpa_study.jpaShop.domain;
 
 public enum DeliveryStatus {
     DELIVERY,CANCEL
