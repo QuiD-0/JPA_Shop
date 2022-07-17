@@ -25,4 +25,8 @@ public class Member {
     @OneToMany(mappedBy = "member") // 읽기 전용
     private List<Order> orders = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return "Member{" + "id=" + id + ", name='" + name + '\'' + ", address=" + address + '}';
+    }
 }
