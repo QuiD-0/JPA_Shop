@@ -37,7 +37,7 @@ public class APIService {
 
     public void TestTwitterLoading() {
         LocalDateTime endLocalDateTime = LocalDateTime.now();
-        LocalDateTime startLocalDateTime = endLocalDateTime.minusDays(365);
+        LocalDateTime startLocalDateTime = endLocalDateTime.minusMinutes(30);//분단위 가능!
         AdditionalParameters additionalParameters = AdditionalParameters.builder().startTime(startLocalDateTime).endTime(endLocalDateTime).build();
 
         UserV2 userV2 = twitterClient.getUserFromUserName("TicketOpen"); //@를 제외한 아이디
@@ -52,16 +52,13 @@ public class APIService {
                 if(tweet.getText().contains("콘서트") || tweet.getText().contains("팬미팅")||tweet.getText().contains("어워즈")) {
                     continue;
                 }
-                System.out.println("Id : " + tweet.getId());
-                System.out.println("text : " + tweet.getText());
-                System.out.println("==============================");
             }else{
                 if(!tweet.getText().contains("뮤지컬") && !tweet.getText().contains("연극")&& !tweet.getText().contains("극단"))
                     continue;
-                System.out.println("Id : " + tweet.getId());
-                System.out.println("text : " + tweet.getText());
-                System.out.println("==============================");
             }
+            System.out.println("Id : " + tweet.getId());
+            System.out.println("text : " + tweet.getText());
+            System.out.println("==============================");
 
         }
     }
