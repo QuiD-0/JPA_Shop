@@ -17,7 +17,7 @@ import java.io.Reader;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
-@Component
+@Service
 public class APIService {
 
     Reader reader;
