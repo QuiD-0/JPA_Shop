@@ -13,11 +13,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 @Service
 public class APIService {
 
     Reader reader;
+
     {
         try {
             reader = new FileReader("Secret.json");
@@ -25,6 +27,7 @@ public class APIService {
             e.printStackTrace();
         }
     }
+
     Gson gson = new Gson();
     Key key = gson.fromJson(reader, Key.class);
 
@@ -37,7 +40,7 @@ public class APIService {
 
     public void TestTwitterLoading() {
         LocalDateTime endLocalDateTime = LocalDateTime.now();
-        LocalDateTime startLocalDateTime = endLocalDateTime.minusMinutes(30);//분단위 가능!
+        LocalDateTime startLocalDateTime = endLocalDateTime.minusDays(2);
         AdditionalParameters additionalParameters = AdditionalParameters.builder().startTime(startLocalDateTime).endTime(endLocalDateTime).build();
 
         UserV2 userV2 = twitterClient.getUserFromUserName("TicketOpen"); //@를 제외한 아이디
@@ -57,6 +60,7 @@ public class APIService {
                     continue;
             }
             System.out.println("Id : " + tweet.getId());
+            System.out.println("CreatedAt : " + tweet.getCreatedAt());
             System.out.println("text : " + tweet.getText());
             System.out.println("==============================");
 
