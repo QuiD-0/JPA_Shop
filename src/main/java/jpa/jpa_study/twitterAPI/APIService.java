@@ -7,6 +7,8 @@ import io.github.redouane59.twitter.dto.tweet.TweetList;
 import io.github.redouane59.twitter.dto.tweet.TweetV2;
 import io.github.redouane59.twitter.dto.user.UserV2;
 import io.github.redouane59.twitter.signature.TwitterCredentials;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
@@ -15,7 +17,7 @@ import java.io.Reader;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
-@Service
+@Component
 public class APIService {
 
     Reader reader;
@@ -38,9 +40,10 @@ public class APIService {
             .apiSecretKey(key.apiSecret)
             .build());
 
+    @Scheduled(cron = "0 0/1 * * * ?")
     public void TestTwitterLoading() {
         LocalDateTime endLocalDateTime = LocalDateTime.now();
-        LocalDateTime startLocalDateTime = endLocalDateTime.minusDays(2);
+        LocalDateTime startLocalDateTime = endLocalDateTime.minusMinutes(2);
         AdditionalParameters additionalParameters = AdditionalParameters.builder().startTime(startLocalDateTime).endTime(endLocalDateTime).build();
 
         UserV2 userV2 = twitterClient.getUserFromUserName("TicketOpen"); //@를 제외한 아이디
