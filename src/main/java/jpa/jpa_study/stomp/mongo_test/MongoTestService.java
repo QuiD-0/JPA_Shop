@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 public class MongoTestService {
 
     private final MongoTestRepository mongoTestRepository;
+
     public TestEntity test() {
         TestEntity testEntity = new TestEntity();
         testEntity.setName("kim");
