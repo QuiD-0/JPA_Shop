@@ -1,7 +1,7 @@
 package jpa.jpa_study;
 
-import jpa.jpa_study.cascade_orphan.Child;
-import jpa.jpa_study.cascade_orphan.Parent;
+import jpa.jpa_study.jpa.cascade_orphan.Child;
+import jpa.jpa_study.jpa.cascade_orphan.Parent;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

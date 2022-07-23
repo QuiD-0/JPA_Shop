@@ -1,7 +1,7 @@
 package jpa.jpa_study.stomp.controller;
 
-import jpa.jpa_study.stomp.model.ChatRoom;
 import jpa.jpa_study.stomp.service.ChatService;
+import jpa.jpa_study.stomp.model.ChatRoom;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,6 +1,6 @@
 package jpa.jpa_study;
 
-import jpa.jpa_study.advanced_mapping.item.Album;
+import jpa.jpa_study.jpa.advanced_mapping.item.Album;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

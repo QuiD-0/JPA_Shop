@@ -1,7 +1,7 @@
 package jpa.jpa_study;
 
-import jpa.jpa_study.relation_mapping.Member;
-import jpa.jpa_study.relation_mapping.Team;
+import jpa.jpa_study.jpa.relation_mapping.Member;
+import jpa.jpa_study.jpa.relation_mapping.Team;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

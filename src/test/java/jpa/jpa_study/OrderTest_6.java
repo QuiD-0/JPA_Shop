@@ -1,9 +1,9 @@
 package jpa.jpa_study;
 
-import jpa.jpa_study.various_relation_mapping.order.Item;
-import jpa.jpa_study.various_relation_mapping.order.Member;
-import jpa.jpa_study.various_relation_mapping.order.Order;
-import jpa.jpa_study.various_relation_mapping.order.OrderItem;
+import jpa.jpa_study.jpa.various_relation_mapping.order.Item;
+import jpa.jpa_study.jpa.various_relation_mapping.order.Member;
+import jpa.jpa_study.jpa.various_relation_mapping.order.Order;
+import jpa.jpa_study.jpa.various_relation_mapping.order.OrderItem;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

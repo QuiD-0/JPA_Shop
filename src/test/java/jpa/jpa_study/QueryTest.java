@@ -1,10 +1,10 @@
 package jpa.jpa_study;
 
-import jpa.jpa_study.jpaShop.domain.Address;
-import jpa.jpa_study.jpaShop.domain.Member;
-import jpa.jpa_study.jpaShop.domain.Order;
-import jpa.jpa_study.jpaShop.domain.OrderItem;
-import jpa.jpa_study.jpaShop.domain.item.Book;
+import jpa.jpa_study.jpa.jpaShop.domain.Address;
+import jpa.jpa_study.jpa.jpaShop.domain.Member;
+import jpa.jpa_study.jpa.jpaShop.domain.Order;
+import jpa.jpa_study.jpa.jpaShop.domain.OrderItem;
+import jpa.jpa_study.jpa.jpaShop.domain.item.Book;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

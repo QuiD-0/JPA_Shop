@@ -17,6 +17,7 @@
 <body>
 <div>
     <button onclick="location.href=`/chat/room`">돌아가기</button>
+    <button onclick="disconnect_test()">채팅방 나가기</button>
 </div>
 <div class="container" id="app" v-cloak>
     <div>
@@ -63,50 +64,92 @@
             this.roomId = localStorage.getItem('wschat.roomId');
             this.sender = localStorage.getItem('wschat.sender');
             this.findRoom();
+            this.initMSG();
         },
         methods: {
-            findRoom: function() {
-                axios.get('/chat/room/'+this.roomId).then(response => { this.room = response.data; });
+            findRoom: function () {
+                axios.get('/chat/room/' + this.roomId).then(response => {
+                    this.room = response.data;
+                });
             },
-            sendMessage: function() {
-                ws.send("/app/chat/message", {}, JSON.stringify({type:'TALK', roomId:this.roomId, sender:this.sender, message:this.message}));
+            sendMessage: function () {
+                ws.send("/app/chat/message", {}, JSON.stringify({
+                    type: 'TALK',
+                    roomId: this.roomId,
+                    sender: this.sender,
+                    message: this.message
+                }));
                 this.message = '';
             },
-            recvMessage: function(recv) {
-                this.messages.unshift({"type":recv.type,"sender":recv.type=='ENTER'?'[알림]':recv.sender,"message":recv.message})
+            recvMessage: function (recv) {
+                this.messages.unshift({
+                    "type": recv.type,
+                    "sender": recv.type == 'ENTER' ? '[알림]' : recv.sender,
+                    "message": recv.message
+                })
+            },
+            initMSG: function () {
+                this.messages.unshift({
+                    "type": "TALK",
+                    "sender": "user1",
+                    "message": "test1"
+                })
+                this.messages.unshift({
+                    "type": "TALK",
+                    "sender": "user1",
+                    "message": "test2"
+                })
+                this.messages.unshift({
+                    "type": "TALK",
+                    "sender": "user1",
+                    "message": "test3"
+                })
+                this.messages.unshift({
+                    "type": "TALK",
+                    "sender": "user2",
+                    "message": "test1"
+                })
             }
         }
     });
 
     function connect() {
         // pub/sub event
-        ws.connect({}, function(frame) {
-            ws.subscribe("/topic/chat/room/"+vm.$data.roomId, function(message) {
+        ws.connect({}, function (frame) {
+            ws.subscribe("/topic/chat/room/" + vm.$data.roomId, function (message) {
                 var recv = JSON.parse(message.body);
                 vm.recvMessage(recv);
             });
-            ws.send("/app/chat/message", {}, JSON.stringify({type:'ENTER', roomId:vm.$data.roomId, sender:vm.$data.sender}));
-        }, function(error) {
-            if(reconnect++ <= 5) {
-                setTimeout(function() {
+            ws.send("/app/chat/message", {}, JSON.stringify({
+                type: 'ENTER',
+                roomId: vm.$data.roomId,
+                sender: vm.$data.sender
+            }));
+        }, function (error) {
+            if (reconnect++ <= 5) {
+                setTimeout(function () {
                     console.log("connection reconnect");
                     sock = new SockJS("/ws/chat");
                     ws = Stomp.over(sock);
                     connect();
-                },10*1000);
+                }, 10 * 1000);
             }
         });
     }
+
     connect();
 
-    function disconnect() {
-        ws.disconnect({},function (frame){
-            ws.send("/app/chat/message", {}, JSON.stringify({type:'OUT', roomId:vm.$data.roomId, sender:vm.$data.sender}));
-            console.log(vm.$data.sender);
-        })
+    function disconnect_test() {
+        ws.send("/app/chat/message", {}, JSON.stringify({
+            type: 'OUT',
+            roomId: vm.$data.roomId,
+            sender: vm.$data.sender
+        }));
+        console.log(vm.$data.sender);
+        ws.disconnect();
     }
 
-    disconnect();
+    disconnect_test();
 </script>
 </body>
 </html>
