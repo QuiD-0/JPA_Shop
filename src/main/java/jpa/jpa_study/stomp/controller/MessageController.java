@@ -2,6 +2,7 @@ package jpa.jpa_study.stomp.controller;
 
 import jpa.jpa_study.stomp.model.ChatMessage;
 import jpa.jpa_study.stomp.mongo_test.MongoTestService;
+import jpa.jpa_study.stomp.mongo_test.TestEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
@@ -20,7 +21,12 @@ public class MessageController {
         if (ChatMessage.MessageType.ENTER.equals(message.getType())) {
             message.setMessage(message.getSender() + "님이 입장하였습니다.");
         } else if (ChatMessage.MessageType.TALK.equals(message.getType())) {
-            mongoTestService.test(message);
+            TestEntity testEntity = new TestEntity();
+            testEntity.setMessage(message.getMessage());
+            testEntity.setRoomId(message.getRoomId());
+            testEntity.setSender(message.getSender());
+            testEntity.setType(TestEntity.MessageType.TALK);
+            mongoTestService.test(testEntity);
         } else if (ChatMessage.MessageType.OUT.equals(message.getType())) {
             message.setMessage(message.getSender() + "님이 퇴장하였습니다.");
         }

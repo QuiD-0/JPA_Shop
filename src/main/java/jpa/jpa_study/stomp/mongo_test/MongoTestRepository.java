@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface MongoTestRepository extends MongoRepository<TestEntity,String> {
     TestEntity save(TestEntity testEntity);
-    List<TestEntity> findAllByRoomId(String roomId);
+    List<TestEntity> findAllByRoomIdOrderByTime(String roomId);
 }

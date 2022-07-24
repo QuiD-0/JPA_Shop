@@ -16,12 +16,6 @@ public class MongoTestController {
 
     private final MongoTestService mongoTestService;
 
-    @GetMapping
-    public TestEntity test() {
-        ChatMessage chatMessage = new ChatMessage();
-        return mongoTestService.test(chatMessage);
-    }
-
     @GetMapping("/{id}")
     public List<TestEntity> find(@PathVariable(name = "id") String id) {
         List<TestEntity> msgs = mongoTestService.findAllChat(id);

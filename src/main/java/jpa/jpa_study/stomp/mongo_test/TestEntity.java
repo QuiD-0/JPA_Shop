@@ -3,9 +3,11 @@ package jpa.jpa_study.stomp.mongo_test;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 @Data
 @Document(collection = "chat")
@@ -26,6 +28,9 @@ public class TestEntity {
 
     //내용
     private String message;
+
+    @CreationTimestamp
+    private LocalDateTime time;
 
     @Override
     public String toString() {

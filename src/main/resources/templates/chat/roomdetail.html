@@ -97,16 +97,16 @@
                 var recv = JSON.parse(message.body);
                 vm.recvMessage(recv);
             });
-            ws.send("/app/chat/message", {}, JSON.stringify({
-                type  : 'ENTER',
-                roomId: vm.$data.roomId,
-                sender: vm.$data.sender
-            }));
             axios.get('/mongo/' + vm.$data.roomId).then(response => {
                 let msgs = response.data;
                 for (let i = 0; i < msgs.length; i++) {
                     vm.recvMessage(msgs[i]);
                 }
+                ws.send("/app/chat/message", {}, JSON.stringify({
+                    type  : 'ENTER',
+                    roomId: vm.$data.roomId,
+                    sender: vm.$data.sender
+                }));
             });
         }, function (error) {
             if (reconnect++ <= 5) {
