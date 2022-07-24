@@ -25,14 +25,6 @@ public class MongoTestController {
     @GetMapping("/{id}")
     public List<TestEntity> find(@PathVariable(name = "id") String id) {
         List<TestEntity> msgs = mongoTestService.findAllChat(id);
-        System.out.println(id);
-        System.out.println(msgs);
-        TestEntity entity = new TestEntity();
-        entity.setType(TestEntity.MessageType.TALK);
-        entity.setMessage("왜 안돼");
-        entity.setSender("asd");
-        entity.setRoomId("test");
-        msgs.add(entity);
         return msgs;
     }
 }
