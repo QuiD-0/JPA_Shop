@@ -1,8 +1,7 @@
 package jpa.jpa_study.stomp.mongo_test;
 
-import jpa.jpa_study.stomp.model.ChatMessage;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Test;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +16,7 @@ public class MongoTestService {
         return mongoTestRepository.save(testEntity);
     }
 
-    public List<TestEntity> findAllChat(String roomId){
-        return mongoTestRepository.findAllByRoomIdOrderByTime(roomId);
+    public List<TestEntity> findAllChat(String roomId, Pageable pageable) {
+        return mongoTestRepository.findAllByRoomIdOrderByTime(roomId, pageable);
     }
 }
