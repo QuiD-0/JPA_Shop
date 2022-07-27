@@ -97,7 +97,7 @@
                 var recv = JSON.parse(message.body);
                 vm.recvMessage(recv);
             });
-            axios.get('/mongo/' + vm.$data.roomId).then(response => {
+            axios.get('/mongo/' + vm.$data.roomId+"?page=0&size=5").then(response => {
                 let msgs = response.data;
                 for (let i = 0; i < msgs.length; i++) {
                     vm.recvMessage(msgs[i]);
