@@ -7,6 +7,8 @@ import io.github.redouane59.twitter.dto.tweet.TweetList;
 import io.github.redouane59.twitter.dto.tweet.TweetV2;
 import io.github.redouane59.twitter.dto.user.UserV2;
 import io.github.redouane59.twitter.signature.TwitterCredentials;
+import lombok.RequiredArgsConstructor;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
@@ -15,26 +17,15 @@ import java.io.Reader;
 import java.time.LocalDateTime;
 
 @Service
+@RequiredArgsConstructor
 public class APIService {
 
-    Reader reader;
-
-    {
-        try {
-            reader = new FileReader("Secret.json");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    Gson gson = new Gson();
-    Key key = gson.fromJson(reader, Key.class);
-
+    private final Environment env;
     private TwitterClient twitterClient = new TwitterClient(TwitterCredentials.builder()
-            .accessToken(key.accessToken)
-            .accessTokenSecret(key.accessTokenSecret)
-            .apiKey(key.apiKey)
-            .apiSecretKey(key.apiSecret)
+            .accessToken(env.getProperty("accessToken"))
+            .accessTokenSecret(env.getProperty("accessTokenSecret"))
+            .apiKey(env.getProperty("apiKey"))
+            .apiSecretKey(env.getProperty("apiSecret"))
             .build());
 
 //    @Scheduled(cron = "0 0/1 * * * ?")
