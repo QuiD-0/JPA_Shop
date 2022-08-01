@@ -1,6 +1,5 @@
 package jpa.jpa_study.jpa.twitterAPI;
 
-import com.google.gson.Gson;
 import io.github.redouane59.twitter.TwitterClient;
 import io.github.redouane59.twitter.dto.endpoints.AdditionalParameters;
 import io.github.redouane59.twitter.dto.tweet.TweetList;
@@ -11,9 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.Reader;
 import java.time.LocalDateTime;
 
 @Service
@@ -21,15 +17,16 @@ import java.time.LocalDateTime;
 public class APIService {
 
     private final Environment env;
-    private TwitterClient twitterClient = new TwitterClient(TwitterCredentials.builder()
-            .accessToken(env.getProperty("accessToken"))
-            .accessTokenSecret(env.getProperty("accessTokenSecret"))
-            .apiKey(env.getProperty("apiKey"))
-            .apiSecretKey(env.getProperty("apiSecret"))
-            .build());
 
-//    @Scheduled(cron = "0 0/1 * * * ?")
+    //    @Scheduled(cron = "0 0/1 * * * ?")
     public void TestTwitterLoading() {
+        TwitterClient twitterClient = new TwitterClient(TwitterCredentials.builder()
+                .accessToken(env.getProperty("twitterAccessToken"))
+                .accessTokenSecret(env.getProperty("twitterAccessTokenSecret"))
+                .apiKey(env.getProperty("twitterApiKey"))
+                .apiSecretKey(env.getProperty("twitterApiSecret"))
+                .build());
+
         LocalDateTime endLocalDateTime = LocalDateTime.now();
         LocalDateTime startLocalDateTime = endLocalDateTime.minusMinutes(2);
         AdditionalParameters additionalParameters = AdditionalParameters.builder().startTime(startLocalDateTime).endTime(endLocalDateTime).build();
@@ -42,12 +39,12 @@ public class APIService {
         System.out.println("트윗 로딩 체크");
         System.out.println("가져온 트윗 수 : " + tweetList.getData().size());
         for (TweetV2.TweetData tweet : tweetList.getData()) {
-            if(tweet.getText().contains("블루스퀘어")){
-                if(tweet.getText().contains("콘서트") || tweet.getText().contains("팬미팅")||tweet.getText().contains("어워즈")) {
+            if (tweet.getText().contains("블루스퀘어")) {
+                if (tweet.getText().contains("콘서트") || tweet.getText().contains("팬미팅") || tweet.getText().contains("어워즈")) {
                     continue;
                 }
-            }else{
-                if(!tweet.getText().contains("뮤지컬") && !tweet.getText().contains("연극")&& !tweet.getText().contains("극단"))
+            } else {
+                if (!tweet.getText().contains("뮤지컬") && !tweet.getText().contains("연극") && !tweet.getText().contains("극단"))
                     continue;
             }
             System.out.println("Id : " + tweet.getId());

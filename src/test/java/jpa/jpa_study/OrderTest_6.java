@@ -15,7 +15,7 @@ import javax.persistence.EntityManager;
 public class OrderTest_6 {
 
     @Autowired
-    private EntityManager em;
+    EntityManager em;
 
     @Test
     @Transactional
@@ -54,5 +54,6 @@ public class OrderTest_6 {
         member.setZipcode("12312");
         return member;
     }
+
 
 }

@@ -78,7 +78,6 @@ public class QueryTest {
 
     @Test
     @Transactional
-
     public void Criteria_Test() {
         CriteriaQuery<Member> cb = em.getCriteriaBuilder().createQuery(Member.class);
         Root<Member> m = cb.from(Member.class);
