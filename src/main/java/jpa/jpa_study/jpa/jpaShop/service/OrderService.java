@@ -11,6 +11,7 @@ import jpa.jpa_study.jpa.jpaShop.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +21,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final ItemRepository itemRepository;
 
-
+    @Transactional
     public Long order(Long member_id, Long item_id,int count){
         Member member = memberRepository.findOne(member_id);
         Item item = itemRepository.findOne(item_id);
@@ -35,5 +36,11 @@ public class OrderService {
         orderRepository.save(order);
 
         return order.getId();
+    }
+
+    @Transactional
+    public void cancel(Long id){
+        Order order = orderRepository.findOne(id);
+        order.cancel();
     }
 }
