@@ -1,17 +1,15 @@
 package jpa.jpa_study.jpa.jpaShop.service;
 
-import jpa.jpa_study.jpa.jpaShop.domain.Delivery;
-import jpa.jpa_study.jpa.jpaShop.domain.Member;
-import jpa.jpa_study.jpa.jpaShop.domain.Order;
-import jpa.jpa_study.jpa.jpaShop.domain.OrderItem;
+import jpa.jpa_study.jpa.jpaShop.domain.*;
 import jpa.jpa_study.jpa.jpaShop.domain.item.Item;
 import jpa.jpa_study.jpa.jpaShop.repository.ItemRepository;
 import jpa.jpa_study.jpa.jpaShop.repository.MemberRepository;
 import jpa.jpa_study.jpa.jpaShop.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -42,5 +40,9 @@ public class OrderService {
     public void cancel(Long id){
         Order order = orderRepository.findOne(id);
         order.cancel();
+    }
+
+    public List<Order> findOrders(OrderSearch orderSearch){
+        return orderRepository.findOrders(orderSearch);
     }
 }
