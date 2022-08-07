@@ -25,7 +25,10 @@ public class OrderRepositoryImpl implements OrderRepository{
 
     @Override
     public List<Order> findOrders(OrderSearch orderSearch) {
-        return null;
+        return em.createQuery("select o from Order o join o.member m where o.orderStatus =:status and m.name like :name",Order.class)
+                .setParameter("status",orderSearch.getStatus())
+                .setParameter("name",orderSearch.getMemberMame())
+                .getResultList();
     }
 
 }
