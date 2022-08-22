@@ -17,6 +17,10 @@ public class MemberApiController {
 
     private final MemberService memberService;
 
+    /**
+     * 멤버 리스트 반환
+     * @return Member
+     */
     @GetMapping("/api/v1/members")
     public List<Member> membersV1() {
         return memberService.findMembers();
