@@ -1,5 +1,6 @@
 package jpa.jpa_study.jpa.jpaShop.service;
 
+import jpa.jpa_study.jpa.jpaShop.api.dto.QueryDto;
 import jpa.jpa_study.jpa.jpaShop.domain.Member;
 import jpa.jpa_study.jpa.jpaShop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -39,6 +40,12 @@ public class MemberServiceImpl implements MemberService {
     public void update(Long id, String name) {
         Member member = memberRepository.findOne(id);
         member.setName(name);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<QueryDto> findDto() {
+        return memberRepository.findMemberDto();
     }
 
     private void validateDuplicateMember(Member member) {

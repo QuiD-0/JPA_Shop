@@ -1,5 +1,6 @@
 package jpa.jpa_study.jpa.jpaShop.repository;
 
+import jpa.jpa_study.jpa.jpaShop.api.dto.QueryDto;
 import jpa.jpa_study.jpa.jpaShop.domain.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -31,5 +32,10 @@ public class MemberRepositoryImpl implements MemberRepository {
     @Override
     public List<Member> findByName(String name) {
         return em.createQuery("select m from Member m where m.name = :name ").setParameter("name", name).getResultList();
+    }
+
+    @Override
+    public List<QueryDto> findMemberDto() {
+        return em.createQuery("select new jpa.jpa_study.jpa.jpaShop.api.dto.QueryDto(m.id,m.name) from Member m",QueryDto.class).getResultList();
     }
 }

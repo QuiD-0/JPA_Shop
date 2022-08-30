@@ -1,5 +1,6 @@
 package jpa.jpa_study.jpa.jpaShop.api;
 
+import jpa.jpa_study.jpa.jpaShop.api.dto.QueryDto;
 import jpa.jpa_study.jpa.jpaShop.domain.Member;
 import jpa.jpa_study.jpa.jpaShop.service.MemberService;
 import lombok.AllArgsConstructor;
@@ -19,7 +20,10 @@ public class MemberApiController {
 
     /**
      * 멤버 리스트 반환
-     * @return Member
+     * @return List<Member>
+     * @version : 1.0.1
+     * @author : QuiD-0
+     * @param : none
      */
     @GetMapping("/api/v1/members")
     public List<Member> membersV1() {
@@ -32,6 +36,11 @@ public class MemberApiController {
         List<MemberDto> collect = members.stream().map(m -> new MemberDto(m.getName()))
                 .collect(Collectors.toList());
         return new Result(collect);
+    }
+
+    @GetMapping("/api/v3/members")
+    public List<QueryDto> findDto(){
+        return memberService.findDto();
     }
 
     @PostMapping("/api/v1/member")
