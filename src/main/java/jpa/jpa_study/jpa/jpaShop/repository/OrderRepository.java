@@ -11,4 +11,8 @@ public interface OrderRepository {
     Order findOne(Long id);
 
     List<Order> findOrders(OrderSearch orderSearch);
+
+    List<Order> findOrders();
+
+    List<Order> findAllWithItem();
 }
