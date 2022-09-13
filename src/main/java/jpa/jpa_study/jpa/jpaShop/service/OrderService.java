@@ -1,15 +1,19 @@
 package jpa.jpa_study.jpa.jpaShop.service;
 
+import jpa.jpa_study.jpa.jpaShop.api.dto.OrderDto;
+import jpa.jpa_study.jpa.jpaShop.api.dto.QueryDto;
 import jpa.jpa_study.jpa.jpaShop.domain.*;
 import jpa.jpa_study.jpa.jpaShop.domain.item.Item;
 import jpa.jpa_study.jpa.jpaShop.repository.ItemRepository;
 import jpa.jpa_study.jpa.jpaShop.repository.MemberRepository;
 import jpa.jpa_study.jpa.jpaShop.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.jaxb.SpringDataJaxb;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -50,10 +54,18 @@ public class OrderService {
     }
 
     @Transactional
-    public List<Order> findOrdersWithItem() {return orderRepository.findAllWithItem();}
+    public List<Order> findOrdersWithItem() {
+        return orderRepository.findAllWithItem();
+    }
 
     @Transactional(readOnly = true)
     public List<Order> findOrders() {
         return orderRepository.findOrders();
     }
+
+    @Transactional(readOnly = true)
+    public List<OrderDto> findOrdersPaging() {
+        return orderRepository.findAllWithItem().stream().map(Order::convertToOrderDto).collect(Collectors.toList());
+    }
+
 }

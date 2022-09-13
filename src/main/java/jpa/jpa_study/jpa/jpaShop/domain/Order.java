@@ -1,5 +1,6 @@
 package jpa.jpa_study.jpa.jpaShop.domain;
 
+import jpa.jpa_study.jpa.jpaShop.api.dto.OrderDto;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -77,5 +78,15 @@ public class Order {
 
     public int getTotalPrice() {
         return orderItems.stream().mapToInt(OrderItem::getTotalPrice).sum();
+    }
+
+
+    public OrderDto convertToOrderDto() {
+        return OrderDto.builder()
+                .orderItems(orderItems)
+                .member(member)
+                .delivery(delivery)
+                .orderDate(orderDate)
+                .build();
     }
 }
