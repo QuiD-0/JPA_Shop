@@ -1,5 +1,6 @@
 package jpa.jpa_study.jpa.jpaShop.service;
 
+import jpa.jpa_study.jpa.jpaShop.api.dto.MemberDto;
 import jpa.jpa_study.jpa.jpaShop.api.dto.QueryDto;
 import jpa.jpa_study.jpa.jpaShop.domain.Member;
 
@@ -16,4 +17,6 @@ public interface MemberService {
     void update(Long id, String name);
 
     List<QueryDto> findDto();
+
+    List<MemberDto> findJpaMembers();
 }

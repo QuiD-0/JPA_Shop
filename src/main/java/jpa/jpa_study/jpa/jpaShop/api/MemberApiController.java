@@ -1,9 +1,11 @@
 package jpa.jpa_study.jpa.jpaShop.api;
 
+import jpa.jpa_study.jpa.jpaShop.api.dto.MemberDto;
 import jpa.jpa_study.jpa.jpaShop.api.dto.QueryDto;
 import jpa.jpa_study.jpa.jpaShop.domain.Member;
 import jpa.jpa_study.jpa.jpaShop.service.MemberService;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -43,6 +45,11 @@ public class MemberApiController {
         return memberService.findDto();
     }
 
+    @GetMapping("/api/v4/members")
+    public List<MemberDto> findDtoJpa(){
+        return memberService.findJpaMembers();
+    }
+
     @PostMapping("/api/v1/member")
     public CreateMemberResponse saveMemberV1(@RequestBody @Valid Member member) {
         Long id = memberService.join(member);
@@ -69,12 +76,6 @@ public class MemberApiController {
     @AllArgsConstructor
     static class Result<T> {
         private T data;
-    }
-
-    @Data
-    @AllArgsConstructor
-    static class MemberDto {
-        private String name;
     }
 
     @Data
