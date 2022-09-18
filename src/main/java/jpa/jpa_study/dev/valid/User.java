@@ -1,4 +1,4 @@
-package jpa.jpa_study.valid;
+package jpa.jpa_study.dev.valid;
 
 import lombok.Getter;
 

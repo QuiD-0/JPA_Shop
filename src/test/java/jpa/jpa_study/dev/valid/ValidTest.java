@@ -1,4 +1,4 @@
-package jpa.jpa_study.valid;
+package jpa.jpa_study.dev.valid;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
