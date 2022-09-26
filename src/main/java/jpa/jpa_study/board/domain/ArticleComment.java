@@ -14,6 +14,8 @@ public class ArticleComment {
 
     private String title;
 
+    private String content;
+
     private String hashtag;
 
     private LocalDateTime createdAt;
