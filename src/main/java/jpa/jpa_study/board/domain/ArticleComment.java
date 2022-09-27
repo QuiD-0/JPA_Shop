@@ -1,28 +1,66 @@
 package jpa.jpa_study.board.domain;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.time.LocalDateTime;
+import lombok.*;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Objects;
+
+@Entity
+@Getter
+@ToString
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ArticleComment {
 
     @Id
     @GeneratedValue
     private Long id;
 
+    @ManyToOne(optional = false)
     private Article article;
 
-    private String title;
-
+    @Column(nullable = false, length = 500)
     private String content;
 
     private String hashtag;
 
+    @CreatedDate
     private LocalDateTime createdAt;
 
+    @CreatedBy
+    @Column(nullable = false, length = 100)
     private String createdBy;
 
+    @LastModifiedDate
     private LocalDateTime modifiedAt;
 
+    @LastModifiedBy
+    @Column(nullable = false, length = 100)
     private String modifiedBy;
+
+    @Builder
+    public ArticleComment(Article article, String content, String hashtag) {
+        this.article = article;
+        this.content = content;
+        this.hashtag = hashtag;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (!(o instanceof ArticleComment))
+            return false;
+        ArticleComment that = (ArticleComment) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
