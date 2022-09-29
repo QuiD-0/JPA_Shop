@@ -9,10 +9,12 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import org.springframework.data.auditing.config.AuditingConfiguration;
 
 @Entity
 @Getter
 @ToString
+@EntityListeners(AuditingConfiguration.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ArticleComment {
 

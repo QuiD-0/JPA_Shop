@@ -11,10 +11,12 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
+import org.springframework.data.auditing.config.AuditingConfiguration;
 
 @Entity
 @Getter
 @ToString
+@EntityListeners(AuditingConfiguration.class)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(indexes = {@Index(columnList = "title"), @Index(columnList = "hashtag"), @Index(columnList = "createdAt"), @Index(columnList = "createdBy")})
 public class Article {
