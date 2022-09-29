@@ -20,17 +20,35 @@ class JpaTest {
   ArticleRepository articleRepository;
 
   @Test
-  @DisplayName("select 테스트")
+  @DisplayName("Select 테스트")
   void select_test() {
     Assertions.assertThatCode(() -> articleRepository.findAll()).doesNotThrowAnyException();
   }
 
   @Test
-  @DisplayName("insert 테스트")
+  @DisplayName("Insert 테스트")
   void insert_test() {
     Article article = Article.builder().title("test").content("test contents").hashtag("#jpa").build();
     Assertions.assertThatCode(() -> articleRepository.save(article)).doesNotThrowAnyException();
   }
+
+  @Test
+  @DisplayName("Delete 테스트")
+  void delete_test() {
+    Article article = Article.builder().title("test").content("test contents").hashtag("#jpa").build();
+    articleRepository.save(article);
+    Assertions.assertThatCode(() -> articleRepository.delete(article)).doesNotThrowAnyException();
+  }
+
+  @Test
+  @DisplayName("Update 테스트")
+  void update_test() {
+    Article article = Article.builder().title("test").content("test contents").hashtag("#jpa").build();
+    articleRepository.save(article);
+    article.updateContents("update");
+    org.junit.jupiter.api.Assertions.assertEquals(article.getContent(),"update");
+  }
+
 
 
 }

@@ -73,4 +73,8 @@ public class Article {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    public void updateContents(String update) {
+        this.content = update;
+    }
 }
