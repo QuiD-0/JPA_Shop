@@ -1,4 +1,4 @@
-package jpa.jpa_study.board.domain;
+package jpa.jpa_study.board.article.domain;
 
 import java.io.Serializable;
 

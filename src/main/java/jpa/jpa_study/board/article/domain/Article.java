@@ -1,5 +1,6 @@
-package jpa.jpa_study.board.domain;
+package jpa.jpa_study.board.article.domain;
 
+import jpa.jpa_study.board.comment.domain.ArticleComment;
 import lombok.*;
 
 import javax.persistence.*;

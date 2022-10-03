@@ -1,6 +1,6 @@
-package jpa.jpa_study.board.repository;
+package jpa.jpa_study.board.article.repository;
 
-import jpa.jpa_study.board.domain.Article;
+import jpa.jpa_study.board.article.domain.Article;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +43,7 @@ class JpaTest {
     }
 
     @Test
-    public void timestampTest(){
+    public void timestampTest() {
         Article article = Article.builder().title("test").content("test").build();
         articleRepository.save(article);
 
