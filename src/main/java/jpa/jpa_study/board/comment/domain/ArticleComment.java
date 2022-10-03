@@ -14,7 +14,7 @@ import java.util.Objects;
 public class ArticleComment extends BaseFields {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(optional = false)
