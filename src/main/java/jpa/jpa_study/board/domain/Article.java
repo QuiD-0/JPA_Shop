@@ -1,26 +1,11 @@
 package jpa.jpa_study.board.domain;
 
-import java.time.LocalDateTime;
+import lombok.*;
+
+import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Index;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
-import javax.persistence.Table;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Getter
@@ -28,7 +13,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(indexes = {@Index(columnList = "title"), @Index(columnList = "hashtag"),
     @Index(columnList = "createdAt")})
-public class Article {
+public class Article extends BaseFields{
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,14 +27,6 @@ public class Article {
 
   private String hashtag;
 
-  @CreationTimestamp
-  private LocalDateTime createdAt;
-
-  private String createdBy;
-
-  @UpdateTimestamp
-  private LocalDateTime modifiedAt;
-
 
   @ToString.Exclude
   @OrderBy("id")
@@ -58,10 +35,10 @@ public class Article {
 
   @Builder
   public Article(String title, String content, String hashtag, String createdBy) {
+    super(createdBy);
     this.title = title;
     this.content = content;
     this.hashtag = hashtag;
-    this.createdBy = createdBy;
   }
 
   @Override
