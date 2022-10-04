@@ -23,6 +23,4 @@ public interface CommentJpaRepository extends JpaRepository<ArticleComment, Long
         bindings.bind(root.createdAt).first(DateTimeExpression::eq);
         bindings.bind(root.createdBy).first(StringExpression::containsIgnoreCase);
     }
-
-    ;
 }
