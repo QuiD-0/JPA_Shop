@@ -40,3 +40,5 @@ Secret.json
 /et-url originq
 
 /src/main/resources/application.properties
+
+src/main/generated
