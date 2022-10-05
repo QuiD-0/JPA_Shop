@@ -34,6 +34,7 @@ public class ArticleServiceImp implements ArticleService {
         };
     }
 
+    @Transactional(readOnly = true)
     public ArticleDto getArticle(Long id) {
         return articleRepository.findById(id).map(ArticleDto::toArticleDto)
             .orElseThrow(() -> new NotFoundException());
