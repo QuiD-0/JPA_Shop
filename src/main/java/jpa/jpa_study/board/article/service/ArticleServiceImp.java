@@ -1,5 +1,6 @@
 package jpa.jpa_study.board.article.service;
 
+
 import javax.ws.rs.NotFoundException;
 import jpa.jpa_study.board.article.domain.ArticleDto;
 import jpa.jpa_study.board.article.domain.SearchType;

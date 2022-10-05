@@ -15,4 +15,9 @@ public record ArticleDto(LocalDateTime createdAt, String createdBy, String title
             entity.getHashtag()
         );
     }
+
+    public static Article toEntity(ArticleDto dto) {
+        return Article.builder().content(dto.content).createdBy(dto.createdBy).hashtag(dto.hashtag)
+            .title(dto.title).build();
+    }
 }
