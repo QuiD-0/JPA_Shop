@@ -1,13 +1,12 @@
 package jpa.jpa_study.board.article.domain;
 
+import java.time.LocalDateTime;
+import javax.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import javax.persistence.MappedSuperclass;
-import java.time.LocalDateTime;
 
 @ToString
 @Getter

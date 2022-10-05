@@ -1,5 +1,5 @@
 package jpa.jpa_study.board.article.domain;
 
 public enum SearchType {
-    TITLE, CONTENT, ID, NICKNAME, HASHTAG;
+    TITLE, CONTENT, HASHTAG;
 }

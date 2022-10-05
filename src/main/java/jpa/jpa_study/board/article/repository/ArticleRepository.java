@@ -2,7 +2,7 @@ package jpa.jpa_study.board.article.repository;
 
 import com.querydsl.core.types.dsl.DateTimeExpression;
 import com.querydsl.core.types.dsl.StringExpression;
-import java.util.List;
+import java.util.Optional;
 import jpa.jpa_study.board.article.domain.Article;
 import jpa.jpa_study.board.article.domain.QArticle;
 import org.springframework.data.domain.Page;
@@ -17,11 +17,13 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface ArticleRepository extends JpaRepository<Article, Long>,
     QuerydslPredicateExecutor<Article>, QuerydslBinderCustomizer<QArticle> {
 
-    Page<Article> findByTitleContainingPage(String title, Pageable pageable);
+    Page<Article> findByTitleContaining(String title, Pageable pageable);
 
-    List<Article> findByTitleContainingList(String title);
+    Page<Article> findByContentContaining(String key, Pageable pageable);
 
-    Article findById(String id);
+    Page<Article> findByHashtag(String key, Pageable pageable);
+
+    Optional<Article> findById(String id);
 
     @Override
     default void customize(QuerydslBindings bindings, QArticle root) {
@@ -33,4 +35,5 @@ public interface ArticleRepository extends JpaRepository<Article, Long>,
         bindings.bind(root.createdAt).first(DateTimeExpression::eq);
         bindings.bind(root.createdBy).first(StringExpression::containsIgnoreCase);
     }
+
 }
