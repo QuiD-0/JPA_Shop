@@ -14,6 +14,8 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface CommentJpaRepository extends JpaRepository<ArticleComment, Long>,
     QuerydslPredicateExecutor<ArticleComment>, QuerydslBinderCustomizer<QArticleComment> {
 
+    ArticleComment findByArticleId(Long id);
+
     @Override
     default void customize(QuerydslBindings bindings, QArticleComment root) {
         bindings.excludeUnlistedProperties(true);
