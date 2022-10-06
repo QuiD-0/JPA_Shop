@@ -29,6 +29,11 @@ public class ArticleController {
         return articleService.searchArticlesPage(searchType, searchValue, pageable);
     }
 
+    @GetMapping("/{pk}")
+    public ArticleDto findOne(@PathVariable Long id) {
+        return articleService.getArticle(id);
+    }
+
     @GetMapping("/hashtag")
     public List<String> hashtags() {
         return articleService.findAllHashtag();

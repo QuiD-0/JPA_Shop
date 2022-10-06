@@ -14,12 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ArticleServiceImp implements ArticleService {
 
     private final ArticleRepository articleRepository;
 
     @Override
-    @Transactional(readOnly = true)
     public Page<ArticleDto> searchArticlesPage(SearchType searchType, String key,
         Pageable pageable) {
         if (key == null || key.isBlank()) {
@@ -46,7 +46,7 @@ public class ArticleServiceImp implements ArticleService {
         return articleRepository.findSearchtag(key).stream().map(ArticleDto::toArticleDto).toList();
     }
 
-    @Transactional(readOnly = true)
+    @Override
     public ArticleDto getArticle(Long id) {
         return articleRepository.findById(id).map(ArticleDto::toArticleDto)
             .orElseThrow(() -> new NotFoundException());

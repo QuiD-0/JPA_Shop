@@ -5,6 +5,7 @@ import jpa.jpa_study.board.article.domain.ArticleDto;
 import jpa.jpa_study.board.article.domain.SearchType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface ArticleService {
 
@@ -13,4 +14,8 @@ public interface ArticleService {
     List<String> findAllHashtag();
 
     List<ArticleDto> searchHashtag(String key);
+
+
+    @Transactional(readOnly = true)
+    ArticleDto getArticle(Long id);
 }

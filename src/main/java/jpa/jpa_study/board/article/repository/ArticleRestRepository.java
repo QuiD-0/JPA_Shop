@@ -2,7 +2,6 @@ package jpa.jpa_study.board.article.repository;
 
 import com.querydsl.core.types.dsl.DateTimeExpression;
 import com.querydsl.core.types.dsl.StringExpression;
-import java.util.Optional;
 import jpa.jpa_study.board.article.domain.Article;
 import jpa.jpa_study.board.article.domain.QArticle;
 import org.springframework.data.domain.Page;
@@ -22,8 +21,6 @@ public interface ArticleRestRepository extends JpaRepository<Article, Long>,
     Page<Article> findByContentContaining(String key, Pageable pageable);
 
     Page<Article> findByHashtag(String key, Pageable pageable);
-
-    Optional<Article> findById(String id);
 
     @Override
     default void customize(QuerydslBindings bindings, QArticle root) {
