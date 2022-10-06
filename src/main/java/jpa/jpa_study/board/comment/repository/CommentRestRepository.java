@@ -11,7 +11,7 @@ import org.springframework.data.querydsl.binding.QuerydslBindings;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
-public interface CommentJpaRepository extends JpaRepository<ArticleComment, Long>,
+public interface CommentRestRepository extends JpaRepository<ArticleComment, Long>,
     QuerydslPredicateExecutor<ArticleComment>, QuerydslBinderCustomizer<QArticleComment> {
 
     ArticleComment findByArticleId(Long id);
