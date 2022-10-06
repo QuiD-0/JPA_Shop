@@ -1,6 +1,7 @@
 package jpa.jpa_study.board.article.service;
 
 
+import java.util.List;
 import javax.ws.rs.NotFoundException;
 import jpa.jpa_study.board.article.domain.ArticleDto;
 import jpa.jpa_study.board.article.domain.SearchType;
@@ -33,6 +34,16 @@ public class ArticleServiceImp implements ArticleService {
                 articleRepository.findByHashtag(key, pageable).map(ArticleDto::toArticleDto);
             default -> throw new IllegalStateException("Unexpected value: " + searchType);
         };
+    }
+
+    @Override
+    public List<String> findAllHashtag() {
+        return articleRepository.findAllHashtag();
+    }
+
+    @Override
+    public List<ArticleDto> searchHashtag(String key) {
+        return articleRepository.findSearchtag(key).stream().map(ArticleDto::toArticleDto).toList();
     }
 
     @Transactional(readOnly = true)

@@ -1,11 +1,19 @@
 package jpa.jpa_study.board.comment.domain;
 
+import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import jpa.jpa_study.board.article.domain.Article;
 import jpa.jpa_study.board.article.domain.BaseFields;
-import lombok.*;
-
-import javax.persistence.*;
-import java.util.Objects;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Getter
@@ -17,6 +25,7 @@ public class ArticleComment extends BaseFields {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ToString.Exclude
     @ManyToOne(optional = false)
     private Article article;
 
