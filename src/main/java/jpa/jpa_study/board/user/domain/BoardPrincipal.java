@@ -13,8 +13,7 @@ public record BoardPrincipal(String username, String password,
 
     public static BoardPrincipal toPrincipal(UserDto userDto) {
         return BoardPrincipal.builder().username(userDto.userId()).password(userDto.userPassword())
-            .email(userDto.email())
-            .nickname(userDto.nickname()).memo(userDto.memo()).build();
+            .email(userDto.email()).nickname(userDto.nickname()).memo(userDto.memo()).build();
     }
 
     @Override
@@ -34,21 +33,21 @@ public record BoardPrincipal(String username, String password,
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
