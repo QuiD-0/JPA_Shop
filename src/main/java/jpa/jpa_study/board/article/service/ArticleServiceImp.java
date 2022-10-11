@@ -53,6 +53,6 @@ public class ArticleServiceImp implements ArticleService {
     public ArticleDto getArticle(Long id, String name) {
         userRepository.findById(name).orElseThrow(NotFoundException::new);
         return articleRepository.findById(id).map(ArticleDto::toArticleDto)
-            .orElseThrow(() -> new NotFoundException());
+            .orElseThrow(NotFoundException::new);
     }
 }
