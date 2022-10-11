@@ -6,6 +6,7 @@ import javax.ws.rs.NotFoundException;
 import jpa.jpa_study.board.article.domain.ArticleDto;
 import jpa.jpa_study.board.article.domain.SearchType;
 import jpa.jpa_study.board.article.repository.ArticleRepository;
+import jpa.jpa_study.board.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class ArticleServiceImp implements ArticleService {
 
     private final ArticleRepository articleRepository;
+
+    private final UserRepository userRepository;
 
     @Override
     public Page<ArticleDto> searchArticlesPage(SearchType searchType, String key,
@@ -47,7 +50,8 @@ public class ArticleServiceImp implements ArticleService {
     }
 
     @Override
-    public ArticleDto getArticle(Long id) {
+    public ArticleDto getArticle(Long id, String name) {
+        userRepository.findById(name).orElseThrow(NotFoundException::new);
         return articleRepository.findById(id).map(ArticleDto::toArticleDto)
             .orElseThrow(() -> new NotFoundException());
     }

@@ -15,7 +15,6 @@ public interface ArticleService {
 
     List<ArticleDto> searchHashtag(String key);
 
-
     @Transactional(readOnly = true)
-    ArticleDto getArticle(Long id);
+    ArticleDto getArticle(Long id, String name);
 }
